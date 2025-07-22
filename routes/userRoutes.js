@@ -3,6 +3,10 @@ const router = express.Router();
 const db = require('../db');
 const fetch = require('node-fetch');
 
+const ADMIN_KEY = 'chave-admin-123';
+
+// ROTAS EXISTENTES...
+
 router.post('/registrar', (req, res) => {
   const { telefone, senha } = req.body;
   db.run('INSERT INTO usuarios (telefone, senha) VALUES (?, ?)', [telefone, senha], function(err) {
@@ -117,4 +121,57 @@ router.post('/enviar-whatsapp', async (req, res) => {
   }
 });
 
+//
+// ROTAS ADMINISTRATIVAS
+//
+
+// Listar usuários
+router.get('/admin/usuarios', (req, res) => {
+  if (req.headers.authorization !== ADMIN_KEY)
+    return res.status(403).json({ erro: 'Acesso negado' });
+
+  db.all('SELECT telefone, nome FROM usuarios', [], (err, rows) => {
+    if (err) return res.status(500).json({ erro: err.message });
+    res.json(rows);
+  });
+});
+
+// Adicionar novo usuário
+router.post('/admin/usuarios', (req, res) => {
+  if (req.headers.authorization !== ADMIN_KEY)
+    return res.status(403).json({ erro: 'Acesso negado' });
+
+  const { telefone, senha, nome } = req.body;
+  db.run('INSERT INTO usuarios (telefone, senha, nome) VALUES (?, ?, ?)', [telefone, senha, nome], function(err) {
+    if (err) return res.status(500).json({ erro: err.message });
+    res.json({ sucesso: true });
+  });
+});
+
+// Atualizar senha ou nome
+router.put('/admin/usuarios/:telefone', (req, res) => {
+  if (req.headers.authorization !== ADMIN_KEY)
+    return res.status(403).json({ erro: 'Acesso negado' });
+
+  const { telefone } = req.params;
+  const { senha, nome } = req.body;
+  db.run('UPDATE usuarios SET senha = ?, nome = ? WHERE telefone = ?', [senha, nome, telefone], function(err) {
+    if (err) return res.status(500).json({ erro: err.message });
+    res.json({ sucesso: true });
+  });
+});
+
+// Excluir usuário
+router.delete('/admin/usuarios/:telefone', (req, res) => {
+  if (req.headers.authorization !== ADMIN_KEY)
+    return res.status(403).json({ erro: 'Acesso negado' });
+
+  const { telefone } = req.params;
+  db.run('DELETE FROM usuarios WHERE telefone = ?', [telefone], function(err) {
+    if (err) return res.status(500).json({ erro: err.message });
+    res.json({ sucesso: true });
+  });
+});
+
 module.exports = router;
+
