@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GestorX - Admin</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>GestorX</h2>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">🏠 Dashboard</a></li>
+          <li><a href="cobrancas.html">📣 Cobranças</a></li>
+          <li><a href="#">👥 Usuários</a></li>
+          <li><a href="#" id="logout">🚪 Sair</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Painel de Administração</h1>
+        <p>Área restrita a administradores.</p>
+      </header>
+
+      <section>
+        <h2>Usuários Registrados</h2>
+        <table id="usuarios-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>WhatsApp</th>
+              <th>E-mail</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/config.js" type="module"></script>
+  <script src="assets/js/firebase.js" type="module"></script>
+  <script src="assets/js/admin.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GestorX - Painel</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>GestorX</h2>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">🏠 Dashboard</a></li>
+          <li><a href="cobrancas.html">📣 Cobranças</a></li>
+          <li><a href="#">📋 Clientes</a></li>
+          <li><a href="#">📎 Comprovantes</a></li>
+          <li><a href="#">💬 WhatsApp</a></li>
+          <li><a href="#">⚙️ Configurações</a></li>
+          <li><a href="#" id="logout">🚪 Sair</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Bem-vindo, <span id="user-name">usuário</span></h1>
+      </header>
+
+      <section class="cards">
+        <div class="card">Clientes Ativos <span id="ativos">--</span></div>
+        <div class="card">Vencidos <span id="vencidos">--</span></div>
+        <div class="card">Hoje <span id="hoje">--</span></div>
+        <div class="card">Amanhã <span id="amanha">--</span></div>
+        <div class="card">+2 Dias <span id="dois-dias">--</span></div>
+        <div class="card">Recuperados 7d <span id="rec-7d">--</span></div>
+        <div class="card">Taxa Recup. 7d <span id="taxa-7d">--</span></div>
+      </section>
+
+      <section class="graficos">
+        <canvas id="graficoClientes" width="400" height="200"></canvas>
+        <canvas id="graficoFinanceiro" width="400" height="200"></canvas>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/config.js" type="module"></script>
+  <script src="assets/js/firebase.js" type="module"></script>
+  <script src="assets/js/dashboard.js" type="module"></script>
+</body>
+</html>

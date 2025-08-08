@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GestorX - Cobranças</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>GestorX</h2>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">🏠 Dashboard</a></li>
+          <li><a href="cobrancas.html">📣 Cobranças</a></li>
+          <li><a href="#">📋 Clientes</a></li>
+          <li><a href="#">📎 Comprovantes</a></li>
+          <li><a href="#">💬 WhatsApp</a></li>
+          <li><a href="#">⚙️ Configurações</a></li>
+          <li><a href="#" id="logout">🚪 Sair</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Prospecção de Clientes Vencidos</h1>
+        <p>Filtre por dias de atraso e dispare mensagens segmentadas.</p>
+      </header>
+
+      <section class="filtros">
+        <div class="filters-row">
+          <label> Dias de atraso:
+            <select id="diasAtraso">
+              <option value="pre">Pré-vencimento (D-1 / D0)</option>
+              <option value="1-3">D+1 a D+3</option>
+              <option value="4-7">D+4 a D+7 (oferta 10%)</option>
+              <option value="8-15">D+8 a D+15 (negociação)</option>
+              <option value="16-30">D+16 a D+30 (ultimato)</option>
+              <option value="31+">D+31+ (reengajamento)</option>
+            </select>
+          </label>
+          <label> Servidor: <input id="servidor" placeholder="Todos" /> </label>
+          <label> Plano: <input id="plano" placeholder="Todos" /> </label>
+          <button id="btnBuscar" class="btn">Buscar</button>
+        </div>
+        <div class="actions-row">
+          <button id="btnLembrete" class="btn">Enviar Lembrete</button>
+          <button id="btnOferta10" class="btn">Oferecer 10%</button>
+          <button id="btnNegociar" class="btn">Negociar</button>
+          <button id="btnUltimato" class="btn btn-danger">Ultimato</button>
+          <button id="btnAuto" class="btn btn-outline">Disparar Automático</button>
+        </div>
+      </section>
+
+      <section>
+        <table id="tbVencidos">
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="checkAll" /></th>
+              <th>Cliente</th>
+              <th>WhatsApp</th>
+              <th>Plano</th>
+              <th>Servidor</th>
+              <th>Vencimento</th>
+              <th>Dias atraso</th>
+              <th>Valor</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/config.js" type="module"></script>
+  <script src="assets/js/firebase.js" type="module"></script>
+  <script src="assets/js/cobrancas.js" type="module"></script>
+</body>
+</html>
